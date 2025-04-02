@@ -20,8 +20,8 @@ const Footer = () => {
           </div>
           <div>
             <h4 className="text-xl font-bold mb-4">Contact</h4>
-            <p className="text-green-200">support@ngofinder.org</p>
-            <p className="text-green-200">+1 (555) 123-4567</p>
+            <p className="text-green-200">NGOConnect Support</p>
+            <p className="text-green-200">123-456-789</p>
           </div>
         </div>
       </footer>
