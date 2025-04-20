@@ -1,5 +1,7 @@
-import express from "express";
 import dotenv from "dotenv";
+dotenv.config(); // Ensure this is called before accessing process.env
+
+import express from "express";
 import authRoutes from "./routes/auth.js";
 import { connectDB } from "./lib/db.js";
 import cookieParser from "cookie-parser";
@@ -16,7 +18,6 @@ app.use(cors({
 
 app.use("/api/auth", authRoutes);
 
-dotenv.config();
 const PORT = process.env.PORT;
 
 app.listen(PORT, () => {
