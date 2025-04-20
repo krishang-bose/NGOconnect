@@ -8,6 +8,7 @@ import AboutUs from './pages/AboutUs';
 import BlogPage from './pages/BlogSpot';
 import { useAuthStore } from './store/useAuthStore';
 import NGOSearchPage from './pages/NGOSearchPage';
+import AnimalShelterDirectory from './pages/Jobs';
 import { useEffect } from 'react';
 import { Loader } from 'lucide-react';
 import { Toaster } from 'react-hot-toast';
@@ -34,6 +35,7 @@ function App() {
         <Route path="/aboutus" element={authUser?<AboutUs />: <Navigate to="login/"/>} />
         <Route path="/blog" element={authUser?<BlogPage />: <Navigate to="login/"/>} />
         <Route path="/ngos" element={authUser?<NGOSearchPage />: <Navigate to="login/"/>} />
+        <Route path="/volunteer" element={<AnimalShelterDirectory/>}/>
       </Routes>
     <Toaster/>
   </div>
