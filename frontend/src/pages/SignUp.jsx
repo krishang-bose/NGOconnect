@@ -36,7 +36,7 @@ const SignupPage = () => {
     }
     
     await signup({
-      name: formData.fullName,
+      fullName: formData.fullName, // Ensure this matches the backend field name
       email: formData.email,
       password: formData.password,
       organization: formData.organization
