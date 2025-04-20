@@ -1,9 +1,8 @@
 import express from "express";
 import dotenv from "dotenv";
-import authRoutes from "../../routes/auth.js";
+import authRoutes from "./routes/auth.js";
 import { connectDB } from "./lib/db.js";
 import cookieParser from "cookie-parser";
-import messageRoutes from "../../routes/message.js";
 import cors from "cors";
 
 const app = express();
@@ -16,7 +15,6 @@ app.use(cors({
 }));
 
 app.use("/api/auth", authRoutes);
-app.use("/api/message",messageRoutes);
 
 dotenv.config();
 const PORT = process.env.PORT;

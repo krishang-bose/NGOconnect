@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Leaf, TreePine, User, Mail, Lock, Globe } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { useAuthStore } from '../store/useAuthStore';
 
 const SignupPage = () => {
   const [formData, setFormData] = useState({
@@ -9,7 +11,15 @@ const SignupPage = () => {
     confirmPassword: '',
     organization: ''
   });
-  const [isLoading, setIsLoading] = useState(false);
+  
+  const navigate = useNavigate();
+  const { signup, isSigningIn, authUser } = useAuthStore();
+
+  useEffect(() => {
+    if (authUser) {
+      navigate('/dashboard');
+    }
+  }, [authUser, navigate]);
 
   const handleChange = (e) => {
     setFormData({
@@ -18,242 +28,123 @@ const SignupPage = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsLoading(true);
-    setTimeout(() => setIsLoading(false), 1500);
+    if (formData.password !== formData.confirmPassword) {
+      alert("Passwords don't match");
+      return;
+    }
+    
+    await signup({
+      name: formData.fullName,
+      email: formData.email,
+      password: formData.password,
+      organization: formData.organization
+    });
   };
 
   return (
-    <div style={{
-      minHeight: '100vh',
-      width: '100vw',
-      background: 'linear-gradient(135deg, #f0fff4 0%, #fff8e1 100%)',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      position: 'relative',
-      overflow: 'hidden',
-      margin: 0,
-      padding: 0
-    }}>
+    <div className="min-h-screen w-screen bg-gradient-to-br from-green-50 to-amber-50 flex items-center justify-center relative overflow-hidden m-0 p-0">
       {/* Animated Background Elements */}
       {[...Array(8)].map((_, i) => (
         <div
           key={i}
+          className="absolute animate-pulse"
           style={{
-            position: 'absolute',
             top: `${Math.random() * 100}%`,
             left: `${Math.random() * 100}%`,
-            animation: `float ${5 + Math.random() * 5}s infinite`,
+            animationDuration: `${5 + Math.random() * 5}s`,
             animationDelay: `${Math.random() * 2}s`,
             transform: `rotate(${Math.random() * 360}deg)`
           }}
         >
           <TreePine 
-            style={{ color: '#4ade80', opacity: 0.2 }} 
+            className="text-green-400 opacity-20"
             size={40 + Math.random() * 40} 
           />
         </div>
       ))}
 
       {/* Main Signup Container */}
-      <div style={{ 
-        width: '90%',
-        maxWidth: '450px',
-        position: 'relative',
-        margin: '20px auto'
-      }}>
+      <div className="w-full max-w-lg relative mx-auto my-5">
         {/* Gradient Border Effect */}
-        <div style={{
-          position: 'absolute',
-          inset: '-5px',
-          background: 'linear-gradient(45deg, #4ade80 0%, #fbbf24 100%)',
-          borderRadius: '1.5rem',
-          opacity: '0.5',
-          filter: 'blur(15px)',
-        }} />
+        <div className="absolute inset-0 bg-gradient-to-tr from-green-400 to-amber-400 rounded-3xl opacity-50 blur-lg -m-1"></div>
         
         {/* Signup Form Card */}
-        <div style={{
-          position: 'relative',
-          background: 'rgba(255, 255, 255, 0.9)',
-          backdropFilter: 'blur(8px)',
-          borderRadius: '1.5rem',
-          padding: '2rem',
-          border: '1px solid rgba(74, 222, 128, 0.1)',
-          boxShadow: '0 10px 30px rgba(0, 0, 0, 0.1)',
-          maxHeight: 'calc(100vh - 40px)',
-          overflowY: 'auto'
-        }}>
+        <div className="relative bg-white bg-opacity-90 backdrop-blur-md rounded-3xl p-8 border border-green-400 border-opacity-10 shadow-xl max-h-[calc(100vh-40px)] overflow-y-auto">
           {/* Header Section */}
-          <div style={{ 
-            textAlign: 'center', 
-            marginBottom: '2rem'
-          }}>
-            <div style={{
-              display: 'inline-block',
-              padding: '1rem',
-              background: '#f0fff4',
-              borderRadius: '50%',
-              marginBottom: '1rem',
-              transition: 'transform 0.3s',
-              cursor: 'pointer'
-            }}>
-              <TreePine style={{ color: '#16a34a', width: '2.5rem', height: '2.5rem' }} />
+          <div className="text-center mb-8">
+            <div className="inline-block p-4 bg-green-50 rounded-full mb-4 transition-transform duration-300 hover:scale-105 cursor-pointer">
+              <TreePine className="text-green-600 w-10 h-10" />
             </div>
-            <h1 style={{ 
-              fontSize: 'clamp(1.5rem, 4vw, 1.875rem)', 
-              fontWeight: 'bold',
-              color: '#166534',
-              marginBottom: '0.5rem'
-            }}>
+            <h1 className="text-2xl md:text-3xl font-bold text-green-800 mb-2">
               Join Our Mission
             </h1>
-            <p style={{ color: '#16a34a' }}>Together we can make a difference 🌎</p>
+            <p className="text-green-600">Together we can make a difference 🌎</p>
           </div>
 
           {/* Signup Form */}
-          <form onSubmit={handleSubmit} style={{ 
-            display: 'flex', 
-            flexDirection: 'column', 
-            gap: '1.25rem'
-          }}>
+          <form onSubmit={handleSubmit} className="flex flex-col gap-5">
             {/* Input Field Groups */}
-            <div style={{ position: 'relative' }}>
-              <User style={{ 
-                position: 'absolute', 
-                left: '1rem', 
-                top: '50%', 
-                transform: 'translateY(-50%)',
-                color: '#16a34a',
-                width: '1.2rem'
-              }} />
+            <div className="relative">
+              <User className="absolute left-4 top-1/2 -translate-y-1/2 text-green-600 w-5 h-5" />
               <input
                 type="text"
                 name="fullName"
                 value={formData.fullName}
                 onChange={handleChange}
-                style={{
-                  width: '100%',
-                  padding: '0.75rem 1rem 0.75rem 3rem',
-                  borderRadius: '0.75rem',
-                  border: '2px solid #dcfce7',
-                  outline: 'none',
-                  transition: 'all 0.3s',
-                  boxSizing: 'border-box'
-                }}
+                className="w-full py-3 px-4 pl-12 rounded-xl border-2 border-green-100 outline-none focus:border-green-300 transition-all"
                 placeholder="Full Name"
                 required
               />
             </div>
 
-            <div style={{ position: 'relative' }}>
-              <Mail style={{ 
-                position: 'absolute', 
-                left: '1rem', 
-                top: '50%', 
-                transform: 'translateY(-50%)',
-                color: '#16a34a',
-                width: '1.2rem'
-              }} />
+            <div className="relative">
+              <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-green-600 w-5 h-5" />
               <input
                 type="email"
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                style={{
-                  width: '100%',
-                  padding: '0.75rem 1rem 0.75rem 3rem',
-                  borderRadius: '0.75rem',
-                  border: '2px solid #dcfce7',
-                  outline: 'none',
-                  transition: 'all 0.3s',
-                  boxSizing: 'border-box'
-                }}
+                className="w-full py-3 px-4 pl-12 rounded-xl border-2 border-green-100 outline-none focus:border-green-300 transition-all"
                 placeholder="Email Address"
                 required
               />
             </div>
 
-            <div style={{ position: 'relative' }}>
-              <Globe style={{ 
-                position: 'absolute', 
-                left: '1rem', 
-                top: '50%', 
-                transform: 'translateY(-50%)',
-                color: '#16a34a',
-                width: '1.2rem'
-              }} />
+            <div className="relative">
+              <Globe className="absolute left-4 top-1/2 -translate-y-1/2 text-green-600 w-5 h-5" />
               <input
                 type="text"
                 name="organization"
                 value={formData.organization}
                 onChange={handleChange}
-                style={{
-                  width: '100%',
-                  padding: '0.75rem 1rem 0.75rem 3rem',
-                  borderRadius: '0.75rem',
-                  border: '2px solid #dcfce7',
-                  outline: 'none',
-                  transition: 'all 0.3s',
-                  boxSizing: 'border-box'
-                }}
+                className="w-full py-3 px-4 pl-12 rounded-xl border-2 border-green-100 outline-none focus:border-green-300 transition-all"
                 placeholder="Organization (Optional)"
               />
             </div>
 
-            <div style={{ position: 'relative' }}>
-              <Lock style={{ 
-                position: 'absolute', 
-                left: '1rem', 
-                top: '50%', 
-                transform: 'translateY(-50%)',
-                color: '#16a34a',
-                width: '1.2rem'
-              }} />
+            <div className="relative">
+              <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-green-600 w-5 h-5" />
               <input
                 type="password"
                 name="password"
                 value={formData.password}
                 onChange={handleChange}
-                style={{
-                  width: '100%',
-                  padding: '0.75rem 1rem 0.75rem 3rem',
-                  borderRadius: '0.75rem',
-                  border: '2px solid #dcfce7',
-                  outline: 'none',
-                  transition: 'all 0.3s',
-                  boxSizing: 'border-box'
-                }}
+                className="w-full py-3 px-4 pl-12 rounded-xl border-2 border-green-100 outline-none focus:border-green-300 transition-all"
                 placeholder="Password"
                 required
               />
             </div>
 
-            <div style={{ position: 'relative' }}>
-              <Lock style={{ 
-                position: 'absolute', 
-                left: '1rem', 
-                top: '50%', 
-                transform: 'translateY(-50%)',
-                color: '#16a34a',
-                width: '1.2rem'
-              }} />
+            <div className="relative">
+              <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-green-600 w-5 h-5" />
               <input
                 type="password"
                 name="confirmPassword"
                 value={formData.confirmPassword}
                 onChange={handleChange}
-                style={{
-                  width: '100%',
-                  padding: '0.75rem 1rem 0.75rem 3rem',
-                  borderRadius: '0.75rem',
-                  border: '2px solid #dcfce7',
-                  outline: 'none',
-                  transition: 'all 0.3s',
-                  boxSizing: 'border-box'
-                }}
+                className="w-full py-3 px-4 pl-12 rounded-xl border-2 border-green-100 outline-none focus:border-green-300 transition-all"
                 placeholder="Confirm Password"
                 required
               />
@@ -261,56 +152,27 @@ const SignupPage = () => {
 
             <button
               type="submit"
-              disabled={isLoading}
-              style={{
-                width: '100%',
-                padding: '0.75rem',
-                background: '#22c55e',
-                color: 'white',
-                borderRadius: '0.75rem',
-                border: 'none',
-                cursor: 'pointer',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: '0.5rem',
-                transition: 'background 0.3s',
-                fontSize: '1rem',
-                marginTop: '0.5rem'
-              }}
+              disabled={isSigningIn}
+              className="w-full py-3 bg-green-500 text-white rounded-xl border-none cursor-pointer flex items-center justify-center gap-2 transition-colors hover:bg-green-600 disabled:bg-green-300 text-base mt-2"
             >
-              {isLoading ? (
-                <div style={{ 
-                  width: '1.25rem', 
-                  height: '1.25rem', 
-                  border: '2px solid white',
-                  borderTopColor: 'transparent',
-                  borderRadius: '50%',
-                  animation: 'spin 1s linear infinite'
-                }} />
+              {isSigningIn ? (
+                <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
               ) : (
                 <>
                   <span>Create Account</span>
-                  <Leaf style={{ width: '1.25rem', height: '1.25rem' }} />
+                  <Leaf className="w-5 h-5" />
                 </>
               )}
             </button>
           </form>
 
           {/* Footer Links */}
-          <div style={{ 
-            marginTop: '1.5rem', 
-            textAlign: 'center',
-            paddingBottom: '0.5rem'
-          }}>
-            <p style={{ 
-              color: '#4b5563',
-              fontSize: '0.875rem'
-            }}>
+          <div className="mt-6 text-center pb-2">
+            <p className="text-gray-600 text-sm">
               Already have an account?{' '}
               <a 
                 href="/login" 
-                style={{ color: '#16a34a', textDecoration: 'none', fontWeight: 500 }}
+                className="text-green-600 no-underline font-medium hover:underline"
               >
                 Sign in
               </a>
