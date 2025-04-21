@@ -11,6 +11,7 @@ import {
   ArrowRight,
   AlertCircle
 } from 'lucide-react';
+import Header from '../components/Header';
 import Footer from '../components/footer';
 
 const DonationOption = ({ icon: Icon, title, description, selected, onClick }) => (
@@ -233,7 +234,8 @@ const DonationPage = () => {
   if (donationComplete) {
     return (
       <div className="min-h-screen bg-green-50 flex items-center justify-center">
-        <div className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full text-center">
+        <Header />
+        <div className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full text-center mt-16">
           <div className="bg-green-100 p-4 rounded-full inline-flex items-center justify-center mb-6">
             <CheckCircle className="text-green-600" size={48} />
           </div>
@@ -257,6 +259,9 @@ const DonationPage = () => {
 
   return (
     <div className="min-h-screen bg-green-50">
+      {/* Add Header component */}
+      <Header />
+      
       {/* Success Modal */}
       {showSuccessModal && (
         <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
@@ -272,18 +277,18 @@ const DonationPage = () => {
         </div>
       )}
 
-      {/* Hero Section */}
-      <div className="bg-green-600 text-white py-16 px-4">
+      {/* Hero Section - REDUCED SIZE */}
+      <div className="bg-green-600 text-white py-8 px-4">
         <div className="container mx-auto text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">
+          <h1 className="text-3xl md:text-4xl font-bold mb-3">
             Support Meaningful Change
           </h1>
-          <p className="text-xl mb-4 max-w-2xl mx-auto text-green-100">
+          <p className="text-lg mb-2 max-w-2xl mx-auto text-green-100">
             Your donation empowers NGOs to create lasting impact in communities around the world.
           </p>
           <div className="flex items-center justify-center">
-            <Heart className="text-green-300 mr-2" size={24} />
-            <span className="text-green-200">100% of your donation goes directly to your chosen NGO</span>
+            <Heart className="text-green-300 mr-2" size={20} />
+            <span className="text-green-200 text-sm">100% of your donation goes directly to your chosen NGO</span>
           </div>
         </div>
       </div>

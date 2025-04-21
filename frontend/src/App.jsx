@@ -5,7 +5,7 @@ import './index.css';
 import SignupPage from './pages/SignUp';
 import LoginPage from './pages/LoginPage';
 import AboutUs from './pages/AboutUs';
-import BlogPage from './pages/BlogSpot';
+import BlogSpot from './pages/BlogSpot';
 import { useAuthStore } from './store/useAuthStore';
 import NGOSearchPage from './pages/NGOSearchPage';
 import AnimalShelterDirectory from './pages/Jobs';
@@ -37,7 +37,7 @@ function App() {
         <Route path="/signup" element={!authUser? <SignupPage />: <Navigate to="/"/>} />
         <Route path="/login" element={!authUser? <LoginPage />: <Navigate to="/"/>} />
         <Route path="/aboutus" element={authUser?<AboutUs />: <Navigate to="login/"/>} />
-        <Route path="/blog" element={authUser?<BlogPage />: <Navigate to="login/"/>} />
+        <Route path="/blog" element={authUser?<BlogSpot />: <Navigate to="login/"/>} />
         <Route path="/ngos" element={authUser?<NGOSearchPage />: <Navigate to="login/"/>} />
         <Route path="/volunteer" element={<AnimalShelterDirectory/>}/>
         <Route path="/dashboard" element={<Dashboard />}/>
