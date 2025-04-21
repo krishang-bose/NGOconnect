@@ -17,7 +17,7 @@ const Header = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const menuItems = [
-    { id: 'home', label: 'Home', icon: <Home size={20} />, href: '/dash' },
+    { id: 'home', label: 'Home', icon: <Home size={20} />, href: '/dashboard' },
     { id: 'blog', label: 'Stories', icon: <MessageCircle size={20} />, href: '/blog' },
     { id: 'donate', label: 'Donate', icon: <HandHeart size={20} />, href: '/donate' },
     { id: 'volunteer', label: 'Volunteer', icon: <Users size={20} />, href: '/volunteer' },

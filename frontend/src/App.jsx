@@ -31,9 +31,9 @@ function App() {
   return (
   <div>
       <Routes>
-        <Route path="/" element={authUser?<HomePage />: <Navigate to= "login/"/>} />
-        <Route path="/signup" element={!authUser? <SignupPage />: <Navigate to="/"/>} />
-        <Route path="/login" element={!authUser? <LoginPage />: <Navigate to="/"/>} />
+        <Route path="/" element={<HomePage/>} />
+        <Route path="/signup" element={!authUser? <SignupPage />: <Navigate to="/dashboard"/>} />
+        <Route path="/login" element={!authUser? <LoginPage />: <Navigate to="/dashboard"/>} />
         <Route path="/aboutus" element={authUser?<AboutUs />: <Navigate to="login/"/>} />
         <Route path="/blog" element={authUser?<BlogSpot />: <Navigate to="login/"/>} />
         <Route path="/ngos" element={authUser?<NGOSearchPage />: <Navigate to="login/"/>} />
