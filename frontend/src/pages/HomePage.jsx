@@ -1,17 +1,20 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { 
   Search, 
   MapPin, 
   Heart, 
   Users, 
   Globe, 
-  ArrowRight, 
-  Filter 
+  ArrowRight 
 } from 'lucide-react';
 import Footer from '../components/footer';
 
-const CategoryCard = ({ icon: Icon, title, description }) => (
-  <div className="bg-white p-6 rounded-lg shadow-md transform transition-all hover:scale-105 hover:shadow-xl border-2 border-green-200">
+const CategoryCard = ({ icon: Icon, title, description, onClick }) => (
+  <div 
+    className="bg-white p-6 rounded-lg shadow-md transform transition-all hover:scale-105 hover:shadow-xl border-2 border-green-200 cursor-pointer"
+    onClick={onClick}
+  >
     <div className="bg-green-100 p-3 rounded-full inline-block mb-4">
       <Icon className="text-green-600" size={32} />
     </div>
@@ -21,7 +24,19 @@ const CategoryCard = ({ icon: Icon, title, description }) => (
 );
 
 const HomePage = () => {
-  const [searchQuery, setSearchQuery] = useState('');
+  const navigate = useNavigate();
+
+  const handleCategoryClick = (category) => {
+    // Logic for category click (if needed)
+  };
+
+  const handleGetStarted = () => {
+    navigate('/ngos');
+  };
+
+  const handleSearchClick = () => {
+    navigate('/ngos');
+  };
 
   const categories = [
     {
@@ -57,23 +72,14 @@ const HomePage = () => {
           <p className="text-xl mb-8 max-w-2xl mx-auto text-green-100">
             Find NGOs that align with your passion and make a meaningful impact in your community.
           </p>
-          
-          {/* Search Bar */}
-          <div className="flex max-w-xl mx-auto border-2 border-green-500 rounded-lg">
-            <div className="relative flex-grow">
-              <input 
-                type="text" 
-                placeholder="Search NGOs by name, category, or location"
-                className="w-full p-4 rounded-l-lg text-white"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-              />
-              <Filter className="absolute right-4 top-1/2 transform -translate-y-1/2 text-green-500" size={24} />
-            </div>
-            <button className="bg-green-400 text-white px-6 rounded-r-lg flex items-center hover:bg-green-500">
-              <Search size={24} />
-            </button>
-          </div>
+
+          {/* Search Icon Button */}
+          <button 
+            onClick={handleSearchClick}
+            className="bg-green-400 text-white p-4 rounded-full hover:bg-green-500 transition-colors"
+          >
+            <Search size={24} />
+          </button>
         </div>
       </div>
 
@@ -95,6 +101,7 @@ const HomePage = () => {
               icon={category.icon}
               title={category.title}
               description={category.description}
+              onClick={() => handleCategoryClick(category.title)}
             />
           ))}
         </div>
@@ -108,15 +115,18 @@ const HomePage = () => {
               Ready to Make a Difference?
             </h3>
             <p className="text-green-700 max-w-xl">
-              Create an account to connect with NGOs, volunteer, donate, or start your own initiative.
+              Explore our directory to connect with NGOs, volunteer, donate, or start your own initiative.
             </p>
           </div>
-          <button className="bg-green-600 text-white px-8 py-4 rounded-lg flex items-center hover:bg-green-700 transition-colors">
-            Get Started <ArrowRight className="ml-2" size={24} />
+          <button 
+            onClick={handleGetStarted}
+            className="bg-green-600 text-white px-8 py-4 rounded-lg flex items-center hover:bg-green-700 transition-colors"
+          >
+            Find NGOs <ArrowRight className="ml-2" size={24} />
           </button>
         </div>
       </div>
-          <Footer/>
+      <Footer />
     </div>
   );
 };
