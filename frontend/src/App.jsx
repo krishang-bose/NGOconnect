@@ -14,6 +14,7 @@ import { Loader } from 'lucide-react';
 import { Toaster } from 'react-hot-toast';
 import Dashboard from './pages/Dashboard';
 import DonationPage from './pages/Donation';
+import ProfilePage from './pages/Profile';
 
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
         <Route path="/volunteer" element={<AnimalShelterDirectory/>}/>
         <Route path="/dashboard" element={<Dashboard />}/>
         <Route path="/donate" element={<DonationPage />}/>
+        <Route path="/profile" element={<ProfilePage />}/>
       </Routes>
     <Toaster/>
   </div>

@@ -260,7 +260,7 @@ const DonationPage = () => {
   return (
     <div className="min-h-screen bg-green-50">
       {/* Add Header component */}
-      <Header />
+      {/* <Header /> */}
       
       {/* Success Modal */}
       {showSuccessModal && (
