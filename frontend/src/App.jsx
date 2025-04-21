@@ -12,6 +12,8 @@ import AnimalShelterDirectory from './pages/Jobs';
 import { useEffect } from 'react';
 import { Loader } from 'lucide-react';
 import { Toaster } from 'react-hot-toast';
+import Dashboard from './pages/Dashboard';
+import DonationPage from './pages/Donation';
 
 
 function App() {
@@ -31,11 +33,12 @@ function App() {
         <Route path="/" element={authUser?<HomePage />: <Navigate to= "login/"/>} />
         <Route path="/signup" element={!authUser? <SignupPage />: <Navigate to="/"/>} />
         <Route path="/login" element={!authUser? <LoginPage />: <Navigate to="/"/>} />
-
         <Route path="/aboutus" element={authUser?<AboutUs />: <Navigate to="login/"/>} />
         <Route path="/blog" element={authUser?<BlogPage />: <Navigate to="login/"/>} />
         <Route path="/ngos" element={authUser?<NGOSearchPage />: <Navigate to="login/"/>} />
         <Route path="/volunteer" element={<AnimalShelterDirectory/>}/>
+        <Route path="/dashboard" element={<Dashboard />}/>
+        <Route path="/donate" element={<Donate />}/>
       </Routes>
     <Toaster/>
   </div>
