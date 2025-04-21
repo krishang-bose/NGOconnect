@@ -15,7 +15,7 @@ import { Toaster } from 'react-hot-toast';
 import Dashboard from './pages/Dashboard';
 import DonationPage from './pages/Donation';
 import ProfilePage from './pages/Profile';
-import Header from './components/Header';]
+import Header from './components/Header';
 
 
 function App() {
