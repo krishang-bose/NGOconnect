@@ -14,7 +14,6 @@ import { Loader } from 'lucide-react';
 import { Toaster } from 'react-hot-toast';
 import Dashboard from './pages/Dashboard';
 import DonationPage from './pages/Donation';
-import NavBar from './components/NavBar';
 
 
 function App() {
@@ -31,7 +30,6 @@ function App() {
   )}
   return (
   <div>
-    {!hideNavBar && <NavBar />}
       <Routes>
         <Route path="/" element={authUser?<HomePage />: <Navigate to= "login/"/>} />
         <Route path="/signup" element={!authUser? <SignupPage />: <Navigate to="/"/>} />
