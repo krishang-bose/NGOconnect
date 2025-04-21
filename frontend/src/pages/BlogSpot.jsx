@@ -10,9 +10,7 @@ import {
   Share2,
   ThumbsUp
 } from 'lucide-react';
-import { Link } from 'react-router-dom';
 import Footer from '../components/footer';
-import Header from '../components/Header';
 
 const StoryCard = ({ story, onLike, onComment }) => {
   const [likes, setLikes] = useState(story.likes);
@@ -245,8 +243,6 @@ const BlogSpot = () => {
 
   return (
     <div className="min-h-screen bg-green-50">
-      {/* Using Header component instead of Navbar */}
-      <Header />
       
       {/* Hero section */}
       <div className="bg-green-600 text-white py-10 px-4">
