@@ -8,7 +8,6 @@ import {
   Home,
   HandHeart,
   Users,
-  Paw,
   Menu,
   X,
   ChevronDown,
@@ -132,7 +131,7 @@ const BlogContent = () => {
         title: "Stray Dog Rehabilitation Program Transforms Community",
         author: "Raj Patel",
         date: "February 15, 2024",
-        content: "The Urban Paws NGO has been working tirelessly to address the stray dog population in our city. Through their comprehensive program of vaccination, sterilization, and community education...",
+        content: "The Urban Hearts NGO has been working tirelessly to address the stray dog population in our city. Through their comprehensive program of vaccination, sterilization, and community education...",
         image: "/api/placeholder/800/400?text=Dog+Rehabilitation",
         likes: 32,
         comments: [
@@ -285,7 +284,7 @@ const Dashboard = () => {
   ];
 
   const otherItems = [
-    { id: 'animals', label: 'Animals', icon: <Paw size={20} /> },
+    { id: 'animals', label: 'Animals', icon: <Heart size={20} /> },
     { id: 'settings', label: 'Settings', icon: <Settings size={20} /> }
   ];
 
@@ -296,7 +295,7 @@ const Dashboard = () => {
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between py-4">
             <div className="flex items-center">
-              <Paw size={28} className="mr-2" />
+              <Heart size={28} className="mr-2" />
               <h1 className="text-xl font-bold">Animal Rescue Network</h1>
             </div>
             
@@ -532,7 +531,7 @@ const Dashboard = () => {
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="mb-4 md:mb-0">
               <div className="flex items-center">
-                <Paw size={24} className="mr-2" />
+                <Heart size={24} className="mr-2" />
                 <span className="font-bold text-lg">Animal Rescue Network</span>
               </div>
               <p className="text-green-200 text-sm mt-1">Making a difference, one animal at a time</p>
