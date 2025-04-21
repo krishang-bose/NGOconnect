@@ -14,11 +14,12 @@ import { Loader } from 'lucide-react';
 import { Toaster } from 'react-hot-toast';
 import Dashboard from './pages/Dashboard';
 import DonationPage from './pages/Donation';
+import Header from './components/Header';
 
 
 function App() {
   const { authUser, checkAuth, isCheckingAuth} = useAuthStore();
-  const hideNavBar = location.pathname === "/login" || location.pathname === "/signup";
+  const hideNavBar = location.pathname === "/login" || location.pathname === "/signup" || location.pathname === "/" || location.pathname === "/ngos";
   useEffect(() => {
     checkAuth();
   }, [checkAuth]);
@@ -29,7 +30,8 @@ function App() {
     </div>
   )}
   return (
-  <div>
+  <div> 
+    {!hideNavBar && <Header />}
       <Routes>
         <Route path="/" element={<HomePage/>} />
         <Route path="/signup" element={!authUser? <SignupPage />: <Navigate to="/dashboard"/>} />
