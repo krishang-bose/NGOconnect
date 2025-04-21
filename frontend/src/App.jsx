@@ -14,12 +14,16 @@ import { Loader } from 'lucide-react';
 import { Toaster } from 'react-hot-toast';
 import Dashboard from './pages/Dashboard';
 import DonationPage from './pages/Donation';
+<<<<<<< HEAD
 import ProfilePage from './pages/Profile';
+=======
+import Header from './components/Header';
+>>>>>>> 48c137843ed9b01fef4fecf2140dd7305cd8b3f1
 
 
 function App() {
   const { authUser, checkAuth, isCheckingAuth} = useAuthStore();
-  const hideNavBar = location.pathname === "/login" || location.pathname === "/signup";
+  const hideNavBar = location.pathname === "/login" || location.pathname === "/signup" || location.pathname === "/" || location.pathname === "/ngos";
   useEffect(() => {
     checkAuth();
   }, [checkAuth]);
@@ -30,14 +34,15 @@ function App() {
     </div>
   )}
   return (
-  <div>
+  <div> 
+    {!hideNavBar && <Header />}
       <Routes>
-        <Route path="/" element={authUser?<HomePage />: <Navigate to= "login/"/>} />
-        <Route path="/signup" element={!authUser? <SignupPage />: <Navigate to="/"/>} />
-        <Route path="/login" element={!authUser? <LoginPage />: <Navigate to="/"/>} />
+        <Route path="/" element={<HomePage/>} />
+        <Route path="/signup" element={!authUser? <SignupPage />: <Navigate to="/dashboard"/>} />
+        <Route path="/login" element={!authUser? <LoginPage />: <Navigate to="/dashboard"/>} />
         <Route path="/aboutus" element={authUser?<AboutUs />: <Navigate to="login/"/>} />
         <Route path="/blog" element={authUser?<BlogSpot />: <Navigate to="login/"/>} />
-        <Route path="/ngos" element={authUser?<NGOSearchPage />: <Navigate to="login/"/>} />
+        <Route path="/ngos" element={<NGOSearchPage/>} />
         <Route path="/volunteer" element={<AnimalShelterDirectory/>}/>
         <Route path="/dashboard" element={<Dashboard />}/>
         <Route path="/donate" element={<DonationPage />}/>

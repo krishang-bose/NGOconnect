@@ -118,14 +118,23 @@ const HomePage = () => {
               Explore our directory to connect with NGOs, volunteer, donate, or start your own initiative.
             </p>
           </div>
-          <button 
-            onClick={handleGetStarted}
-            className="bg-green-600 text-white px-8 py-4 rounded-lg flex items-center hover:bg-green-700 transition-colors"
-          >
-            Find NGOs <ArrowRight className="ml-2" size={24} />
-          </button>
+          <div className="flex space-x-4">
+            <button 
+              onClick={() => navigate('/login')}
+              className="bg-green-600 text-white px-6 py-3 rounded-lg flex items-center hover:bg-green-700 transition-colors"
+            >
+              Login <ArrowRight className="ml-2" size={20} />
+            </button>
+            <button 
+              onClick={() => navigate('/signup')}
+              className="bg-white text-green-700 border border-green-600 px-6 py-3 rounded-lg flex items-center hover:bg-green-50 transition-colors"
+            >
+              Signup <ArrowRight className="ml-2" size={20} />
+            </button>
+          </div>
         </div>
       </div>
+
       <Footer />
     </div>
   );

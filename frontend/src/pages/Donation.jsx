@@ -11,7 +11,6 @@ import {
   ArrowRight,
   AlertCircle
 } from 'lucide-react';
-import Header from '../components/Header';
 import Footer from '../components/footer';
 
 const DonationOption = ({ icon: Icon, title, description, selected, onClick }) => (
@@ -234,7 +233,6 @@ const DonationPage = () => {
   if (donationComplete) {
     return (
       <div className="min-h-screen bg-green-50 flex items-center justify-center">
-        <Header />
         <div className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full text-center mt-16">
           <div className="bg-green-100 p-4 rounded-full inline-flex items-center justify-center mb-6">
             <CheckCircle className="text-green-600" size={48} />
@@ -259,8 +257,11 @@ const DonationPage = () => {
 
   return (
     <div className="min-h-screen bg-green-50">
+<<<<<<< HEAD
       {/* Add Header component */}
       {/* <Header /> */}
+=======
+>>>>>>> 48c137843ed9b01fef4fecf2140dd7305cd8b3f1
       
       {/* Success Modal */}
       {showSuccessModal && (
