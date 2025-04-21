@@ -14,11 +14,8 @@ import { Loader } from 'lucide-react';
 import { Toaster } from 'react-hot-toast';
 import Dashboard from './pages/Dashboard';
 import DonationPage from './pages/Donation';
-<<<<<<< HEAD
 import ProfilePage from './pages/Profile';
-=======
-import Header from './components/Header';
->>>>>>> 48c137843ed9b01fef4fecf2140dd7305cd8b3f1
+import Header from './components/Header';]
 
 
 function App() {
