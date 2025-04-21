@@ -38,7 +38,7 @@ function App() {
         <Route path="/login" element={!authUser? <LoginPage />: <Navigate to="/dashboard"/>} />
         <Route path="/aboutus" element={authUser?<AboutUs />: <Navigate to="login/"/>} />
         <Route path="/blog" element={authUser?<BlogSpot />: <Navigate to="login/"/>} />
-        <Route path="/ngos" element={authUser?<NGOSearchPage />: <Navigate to="login/"/>} />
+        <Route path="/ngos" element={<NGOSearchPage/>} />
         <Route path="/volunteer" element={<AnimalShelterDirectory/>}/>
         <Route path="/dashboard" element={<Dashboard />}/>
         <Route path="/donate" element={<DonationPage />}/>
