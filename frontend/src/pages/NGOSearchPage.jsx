@@ -1,16 +1,25 @@
-import { useState } from 'react';
-import { Heart, Info, ArrowLeft, Home, DollarSign, Users, Leaf, Calendar, MapPin } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { Heart, Info, ArrowLeft, Home, DollarSign, Users, Leaf, Calendar, MapPin, Filter, Search, X } from 'lucide-react';
 
 export default function AnimalShelterDirectory() {
   const [selectedNGO, setSelectedNGO] = useState(null);
+  const [locationFilter, setLocationFilter] = useState('');
+  const [animalTypeFilter, setAnimalTypeFilter] = useState('');
+  const [filtersVisible, setFiltersVisible] = useState(false);
+  const [filteredNGOs, setFilteredNGOs] = useState([]);
   
-  // Extended NGO data with more information
+  // Extended NGO data with more detailed location and animal type information
   const ngos = [
     {
       id: 1,
       name: "Paws & Rescue",
       description: "Dedicated to rescuing and rehabilitating stray animals across the country.",
-      location: "New York, NY",
+      location: {
+        city: "New York",
+        state: "NY",
+        country: "USA"
+      },
+      animalTypes: ["Dogs", "Cats", "Small Pets"],
       animals: 120,
       volunteers: 45,
       yearFounded: 2010,
@@ -27,7 +36,12 @@ export default function AnimalShelterDirectory() {
       id: 2,
       name: "Second Chance Shelter",
       description: "Providing medical care and rehabilitation for injured wildlife and domestic animals.",
-      location: "Austin, TX",
+      location: {
+        city: "Austin",
+        state: "TX",
+        country: "USA"
+      },
+      animalTypes: ["Dogs", "Cats", "Wildlife"],
       animals: 85,
       volunteers: 30,
       yearFounded: 2015,
@@ -44,7 +58,12 @@ export default function AnimalShelterDirectory() {
       id: 3,
       name: "Global Animal Protection",
       description: "International organization fighting for animal rights and welfare worldwide.",
-      location: "Seattle, WA",
+      location: {
+        city: "Seattle",
+        state: "WA",
+        country: "USA"
+      },
+      animalTypes: ["All Animals", "Wildlife", "Farm Animals"],
       animals: 200,
       volunteers: 120,
       yearFounded: 2005,
@@ -61,7 +80,12 @@ export default function AnimalShelterDirectory() {
       id: 4,
       name: "Whiskers Haven",
       description: "Cat-focused rescue specializing in feral cat rehabilitation and TNR programs.",
-      location: "Portland, OR",
+      location: {
+        city: "Portland",
+        state: "OR",
+        country: "USA"
+      },
+      animalTypes: ["Cats", "Kittens"],
       animals: 75,
       volunteers: 25,
       yearFounded: 2012,
@@ -78,7 +102,12 @@ export default function AnimalShelterDirectory() {
       id: 5,
       name: "Desert Animal Sanctuary",
       description: "Specializing in rescue and rehabilitation of desert wildlife and exotic animals.",
-      location: "Phoenix, AZ",
+      location: {
+        city: "Phoenix",
+        state: "AZ",
+        country: "USA"
+      },
+      animalTypes: ["Reptiles", "Desert Wildlife", "Exotic Animals"],
       animals: 110,
       volunteers: 35,
       yearFounded: 2008,
@@ -95,7 +124,12 @@ export default function AnimalShelterDirectory() {
       id: 6,
       name: "Wildlife Recovery Center",
       description: "Specialized in the rehabilitation of injured native wildlife and ecosystem education.",
-      location: "Denver, CO",
+      location: {
+        city: "Denver",
+        state: "CO",
+        country: "USA"
+      },
+      animalTypes: ["Birds", "Wildlife", "Mammals"],
       animals: 95,
       volunteers: 40,
       yearFounded: 2007,
@@ -112,7 +146,12 @@ export default function AnimalShelterDirectory() {
       id: 7,
       name: "Coastal Marine Rescue",
       description: "Focused on marine mammal rescue, rehabilitation, and ocean conservation.",
-      location: "San Diego, CA",
+      location: {
+        city: "San Diego",
+        state: "CA",
+        country: "USA"
+      },
+      animalTypes: ["Marine Mammals", "Sea Turtles", "Aquatic Animals"],
       animals: 60,
       volunteers: 75,
       yearFounded: 2009,
@@ -129,7 +168,12 @@ export default function AnimalShelterDirectory() {
       id: 8,
       name: "Exotic Bird Sanctuary",
       description: "Providing lifetime care for abandoned and surrendered exotic birds and parrots.",
-      location: "Miami, FL",
+      location: {
+        city: "Miami",
+        state: "FL",
+        country: "USA"
+      },
+      animalTypes: ["Birds", "Parrots", "Exotic Birds"],
       animals: 130,
       volunteers: 35,
       yearFounded: 2011,
@@ -141,8 +185,108 @@ export default function AnimalShelterDirectory() {
         phone: "(305) 555-1122",
         website: "www.exoticbirdsanctuary.org"
       }
+    },
+    {
+      id: 9,
+      name: "Delhi Animal Trust",
+      description: "Community-focused animal welfare organization helping strays in urban India.",
+      location: {
+        city: "Delhi",
+        state: "Delhi",
+        country: "India"
+      },
+      animalTypes: ["Dogs", "Cats", "Street Animals"],
+      animals: 145,
+      volunteers: 50,
+      yearFounded: 2013,
+      imageUrl: "/api/placeholder/400/320",
+      fullDescription: "Delhi Animal Trust works to improve the welfare of street animals in India's capital city. Our initiatives include sterilization campaigns, vaccination drives, emergency rescue services, and community education programs. We operate mobile veterinary clinics that reach underserved neighborhoods and provide critical care to animals that would otherwise go untreated.",
+      needs: ["Medications", "Street feeding volunteers", "Medical equipment", "Transport cages"],
+      contactInfo: {
+        email: "help@delhianimaltrust.org",
+        phone: "+91 98765 43210",
+        website: "www.delhianimaltrust.org"
+      }
+    },
+    {
+      id: 10,
+      name: "London Wildlife Protection",
+      description: "Dedicated to preserving and protecting British wildlife in urban environments.",
+      location: {
+        city: "London",
+        state: "Greater London",
+        country: "UK"
+      },
+      animalTypes: ["Foxes", "Hedgehogs", "Birds", "Small Mammals"],
+      animals: 90,
+      volunteers: 65,
+      yearFounded: 2006,
+      imageUrl: "/api/placeholder/400/320",
+      fullDescription: "London Wildlife Protection works to conserve and protect native British wildlife in London's urban landscape. Our rescue center provides care for injured or orphaned wild animals with the goal of rehabilitation and release. We also maintain wildlife corridors throughout the city and advocate for wildlife-friendly urban planning and development.",
+      needs: ["Wildlife food", "Transport volunteers", "Rehabilitation supplies", "Native plant donations"],
+      contactInfo: {
+        email: "contact@londonwildlifeprotection.org.uk",
+        phone: "+44 20 5555 1234",
+        website: "www.londonwildlifeprotection.org.uk"
+      }
     }
   ];
+  
+  // Get unique locations and animal types for filters
+  const locations = {
+    countries: [...new Set(ngos.map(ngo => ngo.location.country))],
+    states: [...new Set(ngos.map(ngo => ngo.location.state))],
+    cities: [...new Set(ngos.map(ngo => ngo.location.city))]
+  };
+  
+  const animalTypes = [...new Set(ngos.flatMap(ngo => ngo.animalTypes))];
+  
+  // Apply filters whenever they change
+  useEffect(() => {
+    filterNGOs();
+  }, [locationFilter, animalTypeFilter]);
+  
+  // Initialize with all NGOs
+  useEffect(() => {
+    setFilteredNGOs(ngos);
+  }, []);
+  
+  // Filter NGOs based on selected filters
+  const filterNGOs = () => {
+    let filtered = [...ngos];
+    
+    // Apply location filter
+    if (locationFilter) {
+      filtered = filtered.filter(ngo => 
+        ngo.location.country.toLowerCase().includes(locationFilter.toLowerCase()) ||
+        ngo.location.state.toLowerCase().includes(locationFilter.toLowerCase()) ||
+        ngo.location.city.toLowerCase().includes(locationFilter.toLowerCase())
+      );
+    }
+    
+    // Apply animal type filter
+    if (animalTypeFilter) {
+      filtered = filtered.filter(ngo => 
+        ngo.animalTypes.some(type => 
+          type.toLowerCase().includes(animalTypeFilter.toLowerCase())
+        )
+      );
+    }
+    
+    setFilteredNGOs(filtered);
+  };
+  
+  // Reset all filters
+  const resetFilters = () => {
+    setLocationFilter('');
+    setAnimalTypeFilter('');
+    setFilteredNGOs(ngos);
+  };
+  
+  // Format location for display
+  const formatLocation = (location) => {
+    return `${location.city}, ${location.state}, ${location.country}`;
+  };
 
   // Handle viewing NGO details
   if (selectedNGO) {
@@ -166,7 +310,15 @@ export default function AnimalShelterDirectory() {
             <h1 className="text-3xl font-bold text-green-800 mb-2">{ngo.name}</h1>
             <div className="flex items-center mb-6 text-green-600">
               <MapPin size={16} className="mr-1" />
-              <span>{ngo.location}</span>
+              <span>{formatLocation(ngo.location)}</span>
+            </div>
+            
+            <div className="mb-4 flex flex-wrap gap-2">
+              {ngo.animalTypes.map((type, index) => (
+                <span key={index} className="bg-green-100 text-green-800 text-xs px-3 py-1 rounded-full">
+                  {type}
+                </span>
+              ))}
             </div>
             
             <div className="mb-8 text-gray-700 leading-relaxed">
@@ -231,54 +383,174 @@ export default function AnimalShelterDirectory() {
     );
   }
   
-  // Main list view
+  // Main list view with filters
   return (
     <div className="bg-green-50 min-h-screen p-6">
       <div className="max-w-6xl mx-auto">
-        <header className="text-center mb-12">
+        <header className="text-center mb-8">
           <h1 className="text-4xl font-bold text-green-800 mb-2">Animal Shelter Directory</h1>
           <p className="text-green-700">Discover and support animal welfare organizations making a difference</p>
         </header>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {ngos.map(ngo => (
-            <div 
-              key={ngo.id} 
-              className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow cursor-pointer border-t-4 border-green-500 flex flex-col"
-              onClick={() => setSelectedNGO(ngo.id)}
+        {/* Filters section */}
+        <div className="mb-8">
+          <div className="flex justify-between items-center mb-4">
+            <button
+              onClick={() => setFiltersVisible(!filtersVisible)}
+              className="flex items-center bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors"
             >
-              <div className="h-40 bg-green-100 relative">
-                <img src={ngo.imageUrl} alt={ngo.name} className="w-full h-full object-cover" />
-                <div className="absolute top-0 right-0 bg-green-600 text-white px-3 py-1 rounded-bl-lg">
-                  <div className="flex items-center">
-                    <Heart size={14} className="mr-1" />
-                    <span>{ngo.animals}</span>
+              <Filter size={16} className="mr-2" />
+              {filtersVisible ? 'Hide Filters' : 'Show Filters'}
+            </button>
+            
+            {(locationFilter || animalTypeFilter) && (
+              <button
+                onClick={resetFilters}
+                className="flex items-center bg-red-100 text-red-600 px-4 py-2 rounded-lg hover:bg-red-200 transition-colors"
+              >
+                <X size={16} className="mr-2" />
+                Clear Filters
+              </button>
+            )}
+          </div>
+          
+          {filtersVisible && (
+            <div className="bg-white p-6 rounded-lg shadow-md mb-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* Location filter */}
+                <div>
+                  <h3 className="font-semibold text-green-800 mb-2">Filter by Location</h3>
+                  <div className="flex items-center bg-green-50 rounded-lg">
+                    <Search size={16} className="ml-3 text-green-600" />
+                    <input
+                      type="text"
+                      placeholder="Search by country, state, or city..."
+                      value={locationFilter}
+                      onChange={(e) => setLocationFilter(e.target.value)}
+                      className="w-full p-3 bg-transparent focus:outline-none"
+                    />
+                  </div>
+                  
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    {locations.countries.map((country, index) => (
+                      <button
+                        key={`country-${index}`}
+                        onClick={() => setLocationFilter(country)}
+                        className={`text-xs px-3 py-1 rounded-full ${
+                          locationFilter === country ? 
+                          'bg-green-600 text-white' : 
+                          'bg-green-100 text-green-800 hover:bg-green-200'
+                        }`}
+                      >
+                        {country}
+                      </button>
+                    ))}
                   </div>
                 </div>
-              </div>
-              
-              <div className="p-5 flex-grow flex flex-col">
-                <h2 className="text-xl font-bold text-green-800 mb-2">{ngo.name}</h2>
-                <div className="flex items-center text-green-600 text-sm mb-3">
-                  <MapPin size={14} className="mr-1" />
-                  <span>{ngo.location}</span>
-                </div>
-                <p className="text-gray-600 mb-4 flex-grow">{ngo.description}</p>
                 
-                <div className="mt-auto flex justify-between items-center text-sm text-green-700">
-                  <div className="flex items-center">
-                    <Users size={14} className="mr-1" />
-                    <span>{ngo.volunteers} volunteers</span>
+                {/* Animal type filter */}
+                <div>
+                  <h3 className="font-semibold text-green-800 mb-2">Filter by Animal Type</h3>
+                  <div className="flex items-center bg-green-50 rounded-lg">
+                    <Search size={16} className="ml-3 text-green-600" />
+                    <input
+                      type="text"
+                      placeholder="Search by animal type..."
+                      value={animalTypeFilter}
+                      onChange={(e) => setAnimalTypeFilter(e.target.value)}
+                      className="w-full p-3 bg-transparent focus:outline-none"
+                    />
                   </div>
-                  <div className="flex items-center">
-                    <Info size={16} className="ml-1" />
-                    <span className="ml-1">View Details</span>
+                  
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    {animalTypes.map((type, index) => (
+                      <button
+                        key={`type-${index}`}
+                        onClick={() => setAnimalTypeFilter(type)}
+                        className={`text-xs px-3 py-1 rounded-full ${
+                          animalTypeFilter === type ? 
+                          'bg-green-600 text-white' : 
+                          'bg-green-100 text-green-800 hover:bg-green-200'
+                        }`}
+                      >
+                        {type}
+                      </button>
+                    ))}
                   </div>
                 </div>
               </div>
             </div>
-          ))}
+          )}
+          
+          {/* Results count */}
+          <div className="text-green-700 mb-4">
+            Showing {filteredNGOs.length} organization{filteredNGOs.length !== 1 ? 's' : ''}
+            {locationFilter && ` in "${locationFilter}"`}
+            {animalTypeFilter && ` for "${animalTypeFilter}"`}
+          </div>
         </div>
+        
+        {/* NGO cards */}
+        {filteredNGOs.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {filteredNGOs.map(ngo => (
+              <div 
+                key={ngo.id} 
+                className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow cursor-pointer border-t-4 border-green-500 flex flex-col"
+                onClick={() => setSelectedNGO(ngo.id)}
+              >
+                <div className="h-40 bg-green-100 relative">
+                  <img src={ngo.imageUrl} alt={ngo.name} className="w-full h-full object-cover" />
+                  <div className="absolute top-0 right-0 bg-green-600 text-white px-3 py-1 rounded-bl-lg">
+                    <div className="flex items-center">
+                      <Heart size={14} className="mr-1" />
+                      <span>{ngo.animals}</span>
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="p-5 flex-grow flex flex-col">
+                  <h2 className="text-xl font-bold text-green-800 mb-2">{ngo.name}</h2>
+                  <div className="flex items-center text-green-600 text-sm mb-2">
+                    <MapPin size={14} className="mr-1" />
+                    <span>{formatLocation(ngo.location)}</span>
+                  </div>
+                  
+                  <div className="flex flex-wrap gap-1 mb-3">
+                    {ngo.animalTypes.slice(0, 3).map((type, index) => (
+                      <span key={index} className="bg-green-50 text-green-700 text-xs px-2 py-1 rounded">
+                        {type}
+                      </span>
+                    ))}
+                    {ngo.animalTypes.length > 3 && (
+                      <span className="bg-green-50 text-green-700 text-xs px-2 py-1 rounded">
+                        +{ngo.animalTypes.length - 3} more
+                      </span>
+                    )}
+                  </div>
+                  
+                  <p className="text-gray-600 mb-4 flex-grow">{ngo.description}</p>
+                  
+                  <div className="mt-auto flex justify-between items-center text-sm text-green-700">
+                    <div className="flex items-center">
+                      <Users size={14} className="mr-1" />
+                      <span>{ngo.volunteers} volunteers</span>
+                    </div>
+                    <div className="flex items-center">
+                      <Info size={16} className="ml-1" />
+                      <span className="ml-1">View Details</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-12 bg-white rounded-lg shadow">
+            <div className="text-green-800 text-xl mb-2">No organizations found</div>
+            <p className="text-gray-600">Try adjusting your filters or search criteria</p>
+          </div>
+        )}
       </div>
     </div>
   );

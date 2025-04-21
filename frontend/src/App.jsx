@@ -38,7 +38,7 @@ function App() {
         <Route path="/ngos" element={authUser?<NGOSearchPage />: <Navigate to="login/"/>} />
         <Route path="/volunteer" element={<AnimalShelterDirectory/>}/>
         <Route path="/dashboard" element={<Dashboard />}/>
-        <Route path="/donate" element={<Donate />}/>
+        <Route path="/donate" element={<DonationPage />}/>
       </Routes>
     <Toaster/>
   </div>
