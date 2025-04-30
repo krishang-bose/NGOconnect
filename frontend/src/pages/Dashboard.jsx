@@ -50,7 +50,7 @@ const Dashboard = () => {
           <div className="mb-6 flex justify-between items-center">
             <div>
               <h1 className="text-2xl font-bold text-green-800">Welcome to NGOconnect</h1>
-              <p className="text-gray-600">Your hub for animal rescue activities</p>
+              
             </div>
             <div className="relative">
               <Bell size={24} className="text-green-700 cursor-pointer" />
