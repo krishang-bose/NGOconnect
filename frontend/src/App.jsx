@@ -20,7 +20,7 @@ import Header from './components/Header';
 
 function App() {
   const { authUser, checkAuth, isCheckingAuth} = useAuthStore();
-  const hideNavBar = location.pathname === "/login" || location.pathname === "/signup" || location.pathname === "/" || location.pathname === "/ngos" || location.pathname=='/dashboard';
+  const hideNavBar = location.pathname === "/login" || location.pathname === "/signup" || location.pathname === "/" || location.pathname === "/ngos";
   useEffect(() => {
     checkAuth();
   }, [checkAuth]);
@@ -40,10 +40,10 @@ function App() {
         <Route path="/aboutus" element={authUser?<AboutUs />: <Navigate to="login/"/>} />
         <Route path="/blog" element={authUser?<BlogSpot />: <Navigate to="login/"/>} />
         <Route path="/ngos" element={<NGOSearchPage/>} />
-        <Route path="/volunteer" element={<AnimalShelterDirectory/>}/>
-        <Route path="/dashboard" element={<Dashboard />}/>
-        <Route path="/donate" element={<DonationPage />}/>
-        <Route path="/profile" element={<ProfilePage />}/>
+        <Route path="/volunteer" element={authUser?<AnimalShelterDirectory/>: <Navigate to="login/"/>}/>
+        <Route path="/dashboard" element={authUser?<Dashboard/>: <Navigate to="login/"/>}/>
+        <Route path="/donate" element={authUser?<DonationPage />: <Navigate to="login/"/>}/>
+        <Route path="/profile" element={authUser?<ProfilePage />: <Navigate to="login/"/>}/>
       </Routes>
     <Toaster/>
   </div>
