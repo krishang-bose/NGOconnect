@@ -7,26 +7,18 @@ import {
   HandHeart,
   Users,
   Menu,
-  X,
-  ChevronDown,
-  Settings
+  X
 } from 'lucide-react';
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const menuItems = [
     { id: 'home', label: 'Home', icon: <Home size={20} />, href: '/dashboard' },
     { id: 'blog', label: 'Stories', icon: <MessageCircle size={20} />, href: '/blog' },
-    { id: 'donate', label: 'Donate', icon: <HandHeart size={20} />, href: '/donate' },
     { id: 'volunteer', label: 'Volunteer', icon: <Users size={20} />, href: '/volunteer' },
+    { id: 'donate', label: 'Donate', icon: <HandHeart size={20} />, href: '/donate' },
     { id: 'profile', label: 'Profile', icon: <User size={20} />, href: '/profile' }
-  ];
-
-  const otherItems = [
-    { id: 'animals', label: 'Animals', icon: <Heart size={20} />, href: '/animals' },
-    { id: 'settings', label: 'Settings', icon: <Settings size={20} />, href: '/settings' }
   ];
 
   return (
@@ -60,33 +52,6 @@ const Header = () => {
                   <span className="ml-2">{item.label}</span>
                 </a>
               ))}
-              
-              {/* Dropdown for Other items */}
-              <div className="relative">
-                <button
-                  onClick={() => setDropdownOpen(!dropdownOpen)}
-                  className="flex items-center text-white hover:text-green-200"
-                >
-                  <Menu size={20} /> 
-                  <span className="ml-2">Other</span>
-                  <ChevronDown size={16} className={`ml-1 transition-transform ${dropdownOpen ? 'rotate-180' : ''}`} />
-                </button>
-                
-                {dropdownOpen && (
-                  <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10">
-                    {otherItems.map(item => (
-                      <a
-                        key={item.id}
-                        href={item.href}
-                        className="flex items-center px-4 py-2 text-gray-700 hover:bg-green-50"
-                      >
-                        {item.icon}
-                        <span className="ml-2">{item.label}</span>
-                      </a>
-                    ))}
-                  </div>
-                )}
-              </div>
             </nav>
           </div>
         </div>
@@ -118,34 +83,6 @@ const Header = () => {
                 <span>{item.label}</span>
               </a>
             ))}
-            
-            <div className="relative">
-              <button
-                onClick={() => setDropdownOpen(!dropdownOpen)}
-                className="flex items-center justify-between w-full p-3 rounded-md text-white hover:bg-green-600"
-              >
-                <span className="flex items-center space-x-3">
-                  <Menu size={20} /> 
-                  <span>Other</span>
-                </span>
-                <ChevronDown size={16} className={`transition-transform ${dropdownOpen ? 'rotate-180' : ''}`} />
-              </button>
-              
-              {dropdownOpen && (
-                <div className="pl-6 space-y-2 mt-2">
-                  {otherItems.map(item => (
-                    <a
-                      key={item.id}
-                      href={item.href}
-                      className="flex items-center space-x-3 p-2 w-full rounded-md text-white hover:bg-green-600"
-                    >
-                      {item.icon}
-                      <span>{item.label}</span>
-                    </a>
-                  ))}
-                </div>
-              )}
-            </div>
           </nav>
         </div>
       </div>

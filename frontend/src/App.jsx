@@ -20,7 +20,7 @@ import Header from './components/Header';
 
 function App() {
   const { authUser, checkAuth, isCheckingAuth} = useAuthStore();
-  const hideNavBar = location.pathname === "/login" || location.pathname === "/signup" || location.pathname === "/" || location.pathname === "/ngos";
+  const hideNavBar = location.pathname === "/login" || location.pathname === "/signup" || location.pathname === "/" || location.pathname === "/ngos" || location.pathname=='/dashboard';
   useEffect(() => {
     checkAuth();
   }, [checkAuth]);
