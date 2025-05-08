@@ -13,15 +13,15 @@ const Footer = () => {
           <div>
             <h4 className="text-xl font-bold mb-4">Quick Links</h4>
             <ul className="space-y-2">
-              <li><a href="#" className="text-green-100 hover:text-white">Browse NGOs</a></li>
-              <li><a href="#" className="text-green-100 hover:text-white">How It Works</a></li>
+              <li><a href="/ngos" className="text-green-100 hover:text-white">Browse NGOs</a></li>
+              <li><a href="/" className="text-green-100 hover:text-white">How It Works</a></li>
               <li><a href="/aboutus" className="text-green-100 hover:text-white">About Us</a></li>
             </ul>
           </div>
           <div>
             <h4 className="text-xl font-bold mb-4">Contact</h4>
-            <p className="text-green-200">NGOConnect Support</p>
-            <p className="text-green-200">123-456-789</p>
+            <p className="text-green-200">NgoConnect@gmail.com</p>
+            <p className="text-green-200">+91 8455091372</p>
           </div>
         </div>
       </footer>
