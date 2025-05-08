@@ -222,6 +222,17 @@ const AboutUs = () => {
   const anilPhoto = "https://dcbookstore.com/uploads/author/images/1655881916731-D.-Anil-Kumar.jpg";
   
   const teamMembers = [
+    
+    {
+      name: "Anil",
+      role: "Backend Development Lead",
+      description: "I worked closely with Krishang on the frontend, helping build components, layouts, and interaction flows that made the app engaging and functional. I also contributed to the backend, setting up databases, handling server-side operations, and helping integrate APIs to make sure data handling and communication within the app were smooth and reliable.",
+      social: {
+        email: "anil@example.com",
+        linkedin: "https://linkedin.com/in/anil"
+      },
+      photo: anilPhoto
+    },
     {
       name: "Krishang",
       role: "Frontend Development Lead",
@@ -232,16 +243,6 @@ const AboutUs = () => {
         website: "https://krishang.dev"
       },
       photo: krishangPhoto
-    },
-    {
-      name: "Anil",
-      role: "Backend Development Lead",
-      description: "I worked closely with Krishang on the frontend, helping build components, layouts, and interaction flows that made the app engaging and functional. I also contributed to the backend, setting up databases, handling server-side operations, and helping integrate APIs to make sure data handling and communication within the app were smooth and reliable.",
-      social: {
-        email: "anil@example.com",
-        linkedin: "https://linkedin.com/in/anil"
-      },
-      photo: anilPhoto
     },
     {
       name: "Aaraw",
