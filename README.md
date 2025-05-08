@@ -45,22 +45,6 @@ NGOconnect is a platform designed to bridge the gap between NGOs and individuals
 - `/models`: Mongoose schemas for database collections.
 - `/controllers`: Logic for handling API requests.
 
-## Team Contributions
-
-### Krishang Bose (Frontend Development Lead)
-- Led the frontend development, focusing on responsive design and user experience.
-- Integrated APIs and implemented state management using Zustand.
-
-### Anil Kumar (Backend Development Lead)
-- Designed and implemented the backend architecture with secure APIs.
-- Collaborated with the frontend team for seamless integration.
-
-### Aaraw (UI/UX Designer)
-- Conducted user research and designed the app's UI/UX prototypes in Figma.
-
-### Khush (Project Manager)
-- Created project presentations and demonstration videos for milestone reviews.
-
 ## How to Run the Project
 
 ### Prerequisites
