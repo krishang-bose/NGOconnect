@@ -257,7 +257,7 @@ const AboutUs = () => {
     },
     {
       name: "Khush",
-      role: "Project Manager",
+      role: "NA",
       description: "I focused on Milestone 3 of the project, where I created both the project presentation (PPT) and the demonstration video. My work helped clearly communicate the app's features, development process, and impact, making it easy for others to understand and appreciate what we built",
       social: {
         email: "khush@example.com",
