@@ -16,11 +16,13 @@ import Dashboard from './pages/Dashboard';
 import DonationPage from './pages/Donation';
 import ProfilePage from './pages/Profile';
 import Header from './components/Header';
+import Footer from './components/footer';
 
 
 function App() {
   const { authUser, checkAuth, isCheckingAuth} = useAuthStore();
-  const hideNavBar = location.pathname === "/login" || location.pathname === "/signup" || location.pathname === "/" || location.pathname === "/ngos";
+  const hideNavBar = location.pathname === "/login" || location.pathname === "/signup" || location.pathname === "/" || location.pathname === "/ngos" ||location.pathname === "/dashboard";
+  const hideFooter = location.pathname === "/login" || location.pathname === "/signup";
   useEffect(() => {
     checkAuth();
   }, [checkAuth]);
@@ -45,6 +47,7 @@ function App() {
         <Route path="/donate" element={authUser?<DonationPage />: <Navigate to="login/"/>}/>
         <Route path="/profile" element={authUser?<ProfilePage />: <Navigate to="login/"/>}/>
       </Routes>
+      {!hideFooter && <Footer/>}
     <Toaster/>
   </div>
   );

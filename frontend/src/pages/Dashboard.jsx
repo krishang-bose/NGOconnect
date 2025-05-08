@@ -217,30 +217,6 @@ const Dashboard = () => {
           </div>
         </div>
       </main>
-
-      {/* Footer */}
-      <footer className="bg-green-800 text-white py-6 mt-8">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="mb-4 md:mb-0">
-              <div className="flex items-center">
-                <Heart size={24} className="mr-2" />
-                <span className="font-bold text-lg">NGOconnect</span>
-              </div>
-              <p className="text-green-200 text-sm mt-1">Making a difference, one animal at a time</p>
-            </div>
-            <div className="flex space-x-6">
-              <a href="#" className="text-green-200 hover:text-white">About</a>
-              <a href="#" className="text-green-200 hover:text-white">Contact</a>
-              <a href="#" className="text-green-200 hover:text-white">Privacy</a>
-              <a href="#" className="text-green-200 hover:text-white">Terms</a>
-            </div>
-          </div>
-          <div className="mt-6 text-center text-green-200 text-sm">
-            &copy; 2025 NGOconnect. All rights reserved.
-          </div>
-        </div>
-      </footer>
     </div>
   );
 };

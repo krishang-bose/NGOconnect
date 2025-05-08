@@ -11,7 +11,6 @@ import {
   ArrowRight,
   AlertCircle
 } from 'lucide-react';
-import Footer from '../components/footer';
 
 const DonationOption = ({ icon: Icon, title, description, selected, onClick }) => (
   <div 
@@ -653,8 +652,6 @@ const DonationPage = () => {
           </button>
         </div>
       </div>
-
-      <Footer />
     </div>
   );
 };

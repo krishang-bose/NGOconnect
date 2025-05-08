@@ -12,7 +12,7 @@ export default function NGOConnectVolunteerMatch() {
     skills: ["Photography", "Social Media", "Animal Care"],
     hours: 12,
     orgsHelped: 3,
-    imageUrl: "/api/placeholder/320/320"
+    imageUrl: "https://dcbookstore.com/uploads/author/images/1655881916731-D.-Anil-Kumar.jpg"
   });
   
   // Available volunteer skills

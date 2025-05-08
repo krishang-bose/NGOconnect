@@ -10,7 +10,7 @@ const ProfilePage = () => {
   const initialUserData = {
     name: "D ANIL KUMAR",
     title: "Environmental Activist",
-    profileImage: "/api/placeholder/150/150",
+    profileImage: "https://dcbookstore.com/uploads/author/images/1655881916731-D.-Anil-Kumar.jpg",
     location: "Delhi, India",
     email: "anilsss895@gmail.com",
     phone: "+91 8455091372",

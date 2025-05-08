@@ -10,7 +10,6 @@ import {
   Share2,
   ThumbsUp
 } from 'lucide-react';
-import Footer from '../components/footer';
 
 const StoryCard = ({ story, onLike, onComment }) => {
   const [likes, setLikes] = useState(story.likes);
@@ -309,7 +308,6 @@ const BlogSpot = () => {
         </div>
       </div>
       
-      <Footer />
     </div>
   );
 };

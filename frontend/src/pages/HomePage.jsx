@@ -8,7 +8,6 @@ import {
   Globe, 
   ArrowRight 
 } from 'lucide-react';
-import Footer from '../components/footer';
 
 const CategoryCard = ({ icon: Icon, title, description, onClick }) => (
   <div 
@@ -135,7 +134,6 @@ const HomePage = () => {
         </div>
       </div>
 
-      <Footer />
     </div>
   );
 };
